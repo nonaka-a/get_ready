@@ -13,22 +13,22 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2vh 2vw; /* 画面サイズに応じた余白 */
+    padding: 2vmin; /* 画面の短辺に応じた最小限の余白 */
     box-sizing: border-box;
 }
 
 .app-container {
     background-color: rgba(255, 255, 255, 0.95);
-    width: 95vw;    /* 画面幅の95% */
-    height: 95vh;   /* 画面高さの95% */
-    max-width: 1200px; /* PCでの最大幅を少し広げる */
+    /* widthとheightを削除し、中身に合わせてサイズが決まるようにする */
+    max-width: 96vw; /* 画面からはみ出さない最大幅 */
+    max-height: 96vh; /* 画面からはみ出さない最大高さ */
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 2vmin; /* 画面の小さい方の辺に応じた隙間 */
-    padding: 3vmin;
+    gap: 3vmin;
+    padding: 4vmin;
     overflow-y: auto;
     border-radius: 30px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
@@ -37,7 +37,7 @@ body {
 
 .main-content {
     display: flex;
-    gap: 3vmin;
+    gap: 4vmin;
     align-items: flex-start;
     width: 100%;
     justify-content: center;
@@ -46,14 +46,13 @@ body {
 .grid-container {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
-    gap: 0.3vmin;
-    width: 60%;
-    max-width: 60vh; /* 高さに合わせた最大幅 */
+    gap: 0.4vmin;
+    width: 55vmin; /* 画面の短辺を基準にサイズを決定 */
     background-color: #ffcce7;
     border: 3px solid #ffcce7;
     border-radius: 1.5vmin;
     flex-shrink: 0;
-    padding: 0.5vmin;
+    padding: 0.8vmin;
 }
 
 .grid-cell {
@@ -61,7 +60,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2vmin;
+    font-size: 2.2vmin;
     font-weight: bold;
     color: #888;
     background-color: #fff;
@@ -88,15 +87,14 @@ body {
     display: flex;
     flex-direction: column;
     gap: 1.5vmin;
-    width: 35%;
-    max-width: 320px;
+    width: 32vmin; /* 画面の短辺を基準にサイズを決定 */
 }
 
 #name-input {
     width: 100%;
     box-sizing: border-box;
     padding: 1.5vmin;
-    font-size: 2.5vmin;
+    font-size: 3vmin;
     font-family: 'Yusei Magic', sans-serif;
     font-weight: bold;
     text-align: center;
@@ -128,7 +126,7 @@ body {
 .reward-title {
     margin: 0 0 1vmin 0;
     font-weight: bold;
-    font-size: 2vmin;
+    font-size: 2.2vmin;
     display: flex;
     align-items: center;
 }
@@ -136,7 +134,7 @@ body {
     content: '★';
     margin-right: 1vmin;
     color: #ffd54f;
-    font-size: 2.2vmin;
+    font-size: 2.4vmin;
 }
 
 .reward-title.milestone-20 { color: #03a9f4; }
@@ -145,19 +143,19 @@ body {
 
 textarea {
     width: 100%;
-    height: 8vh;
+    height: 8.5vmin;
     box-sizing: border-box;
     border: 2px solid #f1f1f1;
     border-radius: 1vmin;
     padding: 1vmin;
-    font-size: 1.8vmin;
+    font-size: 2vmin;
     font-family: 'Yusei Magic', sans-serif;
     resize: vertical;
     background-color: #fafafa;
     transition: font-size 0.2s ease;
 }
 textarea.small-font {
-    font-size: 1.5vmin;
+    font-size: 1.6vmin;
 }
 
 .button-container {
@@ -168,8 +166,8 @@ textarea.small-font {
 }
 
 #stamp-button, #undo-button, #switch-page-button {
-    padding: 1.5vmin 3vmin;
-    font-size: 2vmin;
+    padding: 1.5vmin 3.5vmin;
+    font-size: 2.2vmin;
     font-family: 'Yusei Magic', sans-serif;
     font-weight: bold;
     cursor: pointer;
@@ -191,7 +189,7 @@ textarea.small-font {
 
 #stamp-button { background: linear-gradient(145deg, #ffb899, #ff8a80); box-shadow: 0 4px 0 0 #e57373; }
 #undo-button { background: linear-gradient(145deg, #a6d9ff, #81c7f5); box-shadow: 0 4px 0 0 #42a5f5; }
-#switch-page-button { color: #5d4037; background: linear-gradient(145deg, #a5d6a7, #81c784); box-shadow: 0 4px 0 0 #388e3c; font-size: 1.8vmin; }
+#switch-page-button { color: #5d4037; background: linear-gradient(145deg, #a5d6a7, #81c784); box-shadow: 0 4px 0 0 #388e3c; font-size: 2vmin; }
 
 #stamp-button:active { box-shadow: 0 2px 0 0 #e57373; }
 #undo-button:active { box-shadow: 0 2px 0 0 #42a5f5; }
@@ -363,8 +361,8 @@ textarea.small-font {
 }
 
 .stamp-option {
-    width: 7vmin;
-    height: 7vmin;
+    width: 8vmin;
+    height: 8vmin;
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -382,8 +380,8 @@ textarea.small-font {
 }
 
 #stamp-change-close-button {
-    padding: 1vmin 3vmin;
-    font-size: 1.8vmin;
+    padding: 1.2vmin 3.5vmin;
+    font-size: 2vmin;
     font-family: 'Yusei Magic', sans-serif;
     font-weight: bold;
     cursor: pointer;
