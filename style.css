@@ -1,0 +1,417 @@
+/* 基本的なスタイル */
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+body {
+    font-family: 'Yusei Magic', sans-serif;
+    background-color: #fce4ec;
+    background-image: linear-gradient(135deg, #fff1f4 25%, transparent 25%, transparent 50%, #fff1f4 50%, #fff1f4 75%, transparent 75%, transparent 100%);
+    background-size: 40px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.app-container {
+    background-color: rgba(255, 255, 255, 0.95);
+    width: 100%;
+    max-width: 960px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding: 40px;
+    overflow-y: auto;
+    border-radius: 30px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border: 3px solid #fff;
+}
+
+.main-content {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    width: 100%;
+    justify-content: center;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 3px;
+    width: 60%;
+    max-width: 520px;
+    background-color: #ffcce7;
+    border: 3px solid #ffcce7;
+    border-radius: 10px;
+    flex-shrink: 0;
+    padding: 5px;
+}
+
+.grid-cell {
+    aspect-ratio: 1 / 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(10px, 1.8vw, 16px);
+    font-weight: bold;
+    color: #888;
+    background-color: #fff;
+    transition: all 0.3s ease;
+    background-size: 80%;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+    cursor: pointer; /* マスをクリック可能にする */
+}
+
+.grid-cell.color-blue { background-color: #e0f7fa; }
+.grid-cell.color-pink { background-color: #fff1f4; }
+.grid-cell.milestone-20 { background-color: #b3e5fc; }
+.grid-cell.milestone-50 { background-color: #f8bbd0; }
+.grid-cell.milestone-100 { background-color: #b3e5fc; }
+
+.grid-cell.stamped {
+    color: transparent;
+    transform: scale(1.05);
+}
+
+.rewards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 40%;
+    max-width: 280px;
+}
+
+#name-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px;
+    font-size: 26px;
+    font-family: 'Yusei Magic', sans-serif;
+    font-weight: bold;
+    text-align: center;
+    color: #c2185b;
+    border: 3px solid #f8bbd0;
+    border-radius: 15px;
+    background-color: #fff;
+    outline: none;
+    transition: all 0.3s;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);
+}
+#name-input::placeholder {
+    color: #fbc02d;
+    opacity: 0.8;
+}
+#name-input:focus {
+    border-color: #ec407a;
+    box-shadow: 0 0 10px rgba(236, 64, 122, 0.6), inset 0 2px 4px rgba(0,0,0,0.06);
+}
+
+.reward-box {
+    background-color: #fff;
+    border: 2px solid #eee;
+    border-radius: 12px;
+    padding: 15px;
+    transition: all 0.3s;
+}
+
+.reward-title {
+    margin: 0 0 10px 0;
+    font-weight: bold;
+    font-size: clamp(14px, 2vw, 18px);
+    display: flex;
+    align-items: center;
+}
+.reward-title::before {
+    content: '★';
+    margin-right: 8px;
+    color: #ffd54f;
+    font-size: 20px;
+}
+
+.reward-title.milestone-20 { color: #03a9f4; }
+.reward-title.milestone-50 { color: #ec407a; }
+.reward-title.milestone-100 { color: #03a9f4; }
+
+textarea {
+    width: 100%;
+    height: 60px;
+    box-sizing: border-box;
+    border: 2px solid #f1f1f1;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 18px;
+    font-family: 'Yusei Magic', sans-serif;
+    resize: vertical;
+    background-color: #fafafa;
+    transition: font-size 0.2s ease;
+}
+textarea.small-font {
+    font-size: 14px;
+}
+
+.button-container {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#stamp-button, #undo-button {
+    padding: 12px 30px;
+    font-size: 20px;
+    font-family: 'Yusei Magic', sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 50px;
+    color: white;
+    min-width: 140px;
+    text-align: center;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 0 0 rgba(0,0,0,0.1);
+    transform: translateY(0);
+}
+#stamp-button:disabled, #undo-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+#stamp-button:active, #undo-button:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 0 rgba(0,0,0,0.1);
+}
+
+#stamp-button { background: linear-gradient(145deg, #ffb899, #ff8a80); }
+#undo-button { background: linear-gradient(145deg, #a6d9ff, #81c7f5); }
+
+#stamp-animation-img {
+    position: fixed;
+    z-index: 100;
+    width: 100px;
+    height: 100px;
+    pointer-events: none;
+    display: none;
+    transform: translate(-50%, -120%);
+}
+
+#stamp-animation-img.is-animating {
+    display: block;
+    animation: stamp-press 0.8s ease-in-out forwards;
+}
+
+@keyframes stamp-press {
+    0% { transform: translate(-30%, -100%) scale(1.5) rotate(-15deg); opacity: 0; }
+    30% { transform: translate(-30%, -60%) scale(1) rotate(10deg); opacity: 1; }
+    60% { transform: translate(10%, -80%) scale(1.8) rotate(-5deg); }
+    75% { transform: translate(-30%, -50%) scale(0.7) rotate(5deg); }
+    90% { transform: translate(-30%, -60%) scale(1) rotate(0deg); opacity: 1; }
+    100% { transform: translate(-30%, -100%) scale(1.2) rotate(15deg); opacity: 0; }
+}
+
+#effects-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 200;
+    overflow: hidden;
+}
+
+.is-shaking {
+    animation: screen-shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+}
+@keyframes screen-shake {
+  10%, 90% { transform: translate3d(-1px, 0, 0); }
+  20%, 80% { transform: translate3d(2px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+  40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 20px;
+    opacity: 0;
+    animation-name: confetti-fall;
+    animation-duration: 4s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+@keyframes confetti-fall {
+    0% { transform: translateY(-10vh) rotateZ(0deg); opacity: 1; }
+    100% { transform: translateY(110vh) rotateZ(720deg); opacity: 0; }
+}
+
+.milestone-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 192, 203, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 300;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+.milestone-modal.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.milestone-popup {
+    background: linear-gradient(145deg, #fff9c4, #ffecb3);
+    padding: 40px 60px;
+    border-radius: 30px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    border: 5px solid #fff;
+    transform: scale(0.7);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+.milestone-modal.is-visible .milestone-popup {
+    transform: scale(1);
+    opacity: 1;
+}
+
+#milestone-text {
+    font-size: clamp(32px, 8vw, 70px);
+    margin: 0 0 30px 0;
+    color: #ec407a;
+    text-shadow: 2px 2px 0 #fff, 4px 4px 0 rgba(255, 138, 128, 0.5);
+    line-height: 1.2;
+}
+
+#milestone-close-button {
+    padding: 15px 40px;
+    font-size: 24px;
+    font-family: 'Yusei Magic', sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 50px;
+    color: white;
+    background: linear-gradient(145deg, #ff8a80, #ff5252);
+    box-shadow: 0 5px 0 0 #c62828;
+    transition: all 0.1s ease;
+}
+#milestone-close-button:active {
+    transform: translateY(3px);
+    box-shadow: 0 2px 0 0 #c62828;
+}
+
+#switch-page-button {
+    padding: 12px 25px;
+    font-size: 18px;
+    font-family: 'Yusei Magic', sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 50px;
+    color: #5d4037;
+    min-width: 140px;
+    text-align: center;
+    transition: all 0.2s ease;
+    background: linear-gradient(145deg, #a5d6a7, #81c784);
+    box-shadow: 0 4px 0 0 #388e3c;
+    transform: translateY(0);
+}
+
+#switch-page-button:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 0 #388e3c;
+}
+
+/* --- ▼▼▼ ここからスタンプ変更モーダルのスタイルを追加 ▼▼▼ --- */
+.stamp-change-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(135, 206, 250, 0.7); /* 半透明の水色背景 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 400;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+.stamp-change-modal.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.stamp-change-popup {
+    background: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    border: 5px solid #fff;
+    max-width: 90%;
+}
+
+.stamp-change-popup h3 {
+    margin: 0 0 20px 0;
+    color: #666;
+    font-size: 24px;
+}
+
+#stamp-options-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.stamp-option {
+    width: 60px;
+    height: 60px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 4px solid transparent;
+}
+.stamp-option:hover {
+    transform: scale(1.1);
+}
+.stamp-option.selected {
+    border-color: #ffc107; /* 選択中のスタンプに黄色い枠 */
+    box-shadow: 0 0 10px #ffc107;
+}
+
+#stamp-change-close-button {
+    padding: 10px 30px;
+    font-size: 18px;
+    font-family: 'Yusei Magic', sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 50px;
+    color: #333;
+    background: #eee;
+    transition: all 0.2s ease;
+}
+#stamp-change-close-button:hover {
+    background: #ddd;
+}

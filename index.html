@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>朝の準備スタンプ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <div class="main-content">
+            <div id="grid-container" class="grid-container">
+                <!-- JavaScriptによって1から100のマスがここに生成されます -->
+            </div>
+    
+            <div class="rewards-container">
+                <div class="name-input-box">
+                    <input type="text" id="name-input" placeholder="なまえをいれてね">
+                </div>
+
+                <div class="reward-box">
+                    <p class="reward-title milestone-20">20 たっせい！</p>
+                    <textarea id="reward-20" placeholder="ごほうびをいれてね"></textarea>
+                </div>
+                <div class="reward-box">
+                    <p class="reward-title milestone-50">50 たっせい！</p>
+                    <textarea id="reward-50" placeholder="ごほうびをいれてね"></textarea>
+                </div>
+                <div class="reward-box">
+                    <p class="reward-title milestone-100">100 たっせい！</p>
+                    <textarea id="reward-100" placeholder="すごい！ごほうびをかいてね"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="button-container">
+            <button id="stamp-button">できた！</button>
+            <button id="undo-button">1つけす</button>
+            <button id="switch-page-button">ページきりかえ</button>
+        </div>
+
+    </div>
+    
+    <div id="effects-container"></div>
+
+    <div id="milestone-modal" class="milestone-modal">
+        <div class="milestone-popup">
+            <h2 id="milestone-text"></h2>
+            <button id="milestone-close-button">やったー！</button>
+        </div>
+    </div>
+
+    <!-- ▼▼▼ ここから追加 ▼▼▼ -->
+    <div id="stamp-change-modal" class="stamp-change-modal">
+        <div class="stamp-change-popup">
+            <h3>すきなスタンプをえらんでね</h3>
+            <div id="stamp-options-container">
+                <!-- JSによってスタンプの選択肢がここに生成されます -->
+            </div>
+            <button id="stamp-change-close-button">やめる</button>
+        </div>
+    </div>
+    <!-- ▲▲▲ ここまで追加 ▲▲▲ -->
+
+    <img id="stamp-animation-img" src="images/stamp_body.png" alt="スタンプ">
+    <audio id="stamp-sound" src="audio/stamp_sound.mp3" preload="auto"></audio>
+    <audio id="milestone-sound" src="audio/milestone_sound.mp3" preload="auto"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
