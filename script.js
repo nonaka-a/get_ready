@@ -13,11 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const milestoneText = document.getElementById('milestone-text');
     const milestoneCloseButton = document.getElementById('milestone-close-button');
     const milestoneSound = document.getElementById('milestone-sound');
-    // ▼▼▼ ここから追加 ▼▼▼
     const stampChangeModal = document.getElementById('stamp-change-modal');
     const stampOptionsContainer = document.getElementById('stamp-options-container');
     const stampChangeCloseButton = document.getElementById('stamp-change-close-button');
-    // ▲▲▲ ここまで追加 ▲▲▲
 
     // --- 変数定義 ---
     const TOTAL_CELLS = 100;
@@ -27,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentPageIndex = 0;
     let allPagesData = [];
     let isAnimating = false;
-    let targetChangeCellNumber = null; // ★変更対象のマス番号を保持
+    let targetChangeCellNumber = null;
 
     // --- データ構造のテンプレート ---
     const createNewPageData = () => ({
@@ -115,7 +113,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (i === 50) cell.classList.add('milestone-50');
             if (i === 100) cell.classList.add('milestone-100');
             
-            // ★各マスにクリックイベントを追加
             cell.addEventListener('click', onCellClick);
 
             gridContainer.appendChild(cell);
@@ -175,11 +172,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { once: true });
     }
 
-    // ▼▼▼ ここからスタンプ変更関連の関数を追加 ▼▼▼
     function onCellClick(event) {
         const cellNumber = parseInt(event.currentTarget.dataset.number);
         const stampColor = allPagesData[currentPageIndex].stampData[cellNumber];
-        // スタンプが押されているマスをクリックした場合のみモーダルを開く
         if (stampColor) {
             openStampChangeModal(cellNumber);
         }
@@ -187,25 +182,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function openStampChangeModal(number) {
         targetChangeCellNumber = number;
-        stampOptionsContainer.innerHTML = ''; // 中身を一度空にする
-
+        stampOptionsContainer.innerHTML = '';
         const currentColor = allPagesData[currentPageIndex].stampData[number];
-
         STAMP_COLORS.forEach(color => {
             const option = document.createElement('div');
             option.classList.add('stamp-option');
             option.style.backgroundImage = `url('images/stamp_mark_${color}.png')`;
-            
             if (color === currentColor) {
-                option.classList.add('selected'); // 現在のスタンプに印をつける
+                option.classList.add('selected');
             }
-
             option.addEventListener('click', () => {
                 changeStamp(color);
             });
             stampOptionsContainer.appendChild(option);
         });
-
         stampChangeModal.classList.add('is-visible');
     }
 
@@ -221,7 +211,6 @@ document.addEventListener('DOMContentLoaded', () => {
             closeStampChangeModal();
         }
     }
-    // ▲▲▲ ここまでスタンプ変更関連の関数 ▲▲▲
 
     function triggerSpecialEffects(x, y) {
         document.body.classList.add('is-shaking');
@@ -285,15 +274,31 @@ document.addEventListener('DOMContentLoaded', () => {
     
     milestoneCloseButton.addEventListener('click', hideMilestonePopup);
     
-    // ▼▼▼ ここから追加 ▼▼▼
     stampChangeCloseButton.addEventListener('click', closeStampChangeModal);
     stampChangeModal.addEventListener('click', (event) => {
-        // 背景の黒い部分をクリックした時だけ閉じる
         if (event.target === stampChangeModal) {
             closeStampChangeModal();
         }
     });
-    // ▲▲▲ ここまで追加 ▲▲▲
+
+    // --- ▼▼▼ ここからフルスクリーン用のコードを追加 ▼▼▼ ---
+    function enterFullScreen() {
+        const elem = document.documentElement;
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen().catch(err => {
+                console.error(`フルスクリーンモードへの移行に失敗しました: ${err.message} (${err.name})`);
+            });
+        } else if (elem.webkitRequestFullscreen) { /* Safari */
+            elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) { /* IE11 */
+            elem.msRequestFullscreen();
+        }
+    }
+
+    // 最初のユーザー操作でフルスクリーンに移行するためのイベントリスナー
+    document.body.addEventListener('click', enterFullScreen, { once: true });
+    document.body.addEventListener('touchstart', enterFullScreen, { once: true });
+    // --- ▲▲▲ ここまでフルスクリーン用のコードを追加 ▲▲▲ ---
 
     // --- 初期化処理の実行 ---
     initialize();
