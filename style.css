@@ -13,21 +13,22 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 2vh 2vw; /* 画面サイズに応じた余白 */
     box-sizing: border-box;
 }
 
 .app-container {
     background-color: rgba(255, 255, 255, 0.95);
-    width: 100%;
-    max-width: 960px;
+    width: 95vw;    /* 画面幅の95% */
+    height: 95vh;   /* 画面高さの95% */
+    max-width: 1200px; /* PCでの最大幅を少し広げる */
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 30px;
-    padding: 40px;
+    gap: 2vmin; /* 画面の小さい方の辺に応じた隙間 */
+    padding: 3vmin;
     overflow-y: auto;
     border-radius: 30px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
@@ -36,7 +37,7 @@ body {
 
 .main-content {
     display: flex;
-    gap: 40px;
+    gap: 3vmin;
     align-items: flex-start;
     width: 100%;
     justify-content: center;
@@ -45,14 +46,14 @@ body {
 .grid-container {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
-    gap: 3px;
+    gap: 0.3vmin;
     width: 60%;
-    max-width: 520px;
+    max-width: 60vh; /* 高さに合わせた最大幅 */
     background-color: #ffcce7;
     border: 3px solid #ffcce7;
-    border-radius: 10px;
+    border-radius: 1.5vmin;
     flex-shrink: 0;
-    padding: 5px;
+    padding: 0.5vmin;
 }
 
 .grid-cell {
@@ -60,7 +61,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: clamp(10px, 1.8vw, 16px);
+    font-size: 2vmin;
     font-weight: bold;
     color: #888;
     background-color: #fff;
@@ -68,8 +69,8 @@ body {
     background-size: 80%;
     background-position: center;
     background-repeat: no-repeat;
-    border-radius: 5px;
-    cursor: pointer; /* マスをクリック可能にする */
+    border-radius: 0.8vmin;
+    cursor: pointer;
 }
 
 .grid-cell.color-blue { background-color: #e0f7fa; }
@@ -86,22 +87,22 @@ body {
 .rewards-container {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    width: 40%;
-    max-width: 280px;
+    gap: 1.5vmin;
+    width: 35%;
+    max-width: 320px;
 }
 
 #name-input {
     width: 100%;
     box-sizing: border-box;
-    padding: 15px;
-    font-size: 26px;
+    padding: 1.5vmin;
+    font-size: 2.5vmin;
     font-family: 'Yusei Magic', sans-serif;
     font-weight: bold;
     text-align: center;
     color: #c2185b;
     border: 3px solid #f8bbd0;
-    border-radius: 15px;
+    border-radius: 1.5vmin;
     background-color: #fff;
     outline: none;
     transition: all 0.3s;
@@ -119,23 +120,23 @@ body {
 .reward-box {
     background-color: #fff;
     border: 2px solid #eee;
-    border-radius: 12px;
-    padding: 15px;
+    border-radius: 1.5vmin;
+    padding: 1.5vmin;
     transition: all 0.3s;
 }
 
 .reward-title {
-    margin: 0 0 10px 0;
+    margin: 0 0 1vmin 0;
     font-weight: bold;
-    font-size: clamp(14px, 2vw, 18px);
+    font-size: 2vmin;
     display: flex;
     align-items: center;
 }
 .reward-title::before {
     content: '★';
-    margin-right: 8px;
+    margin-right: 1vmin;
     color: #ffd54f;
-    font-size: 20px;
+    font-size: 2.2vmin;
 }
 
 .reward-title.milestone-20 { color: #03a9f4; }
@@ -144,60 +145,63 @@ body {
 
 textarea {
     width: 100%;
-    height: 60px;
+    height: 8vh;
     box-sizing: border-box;
     border: 2px solid #f1f1f1;
-    border-radius: 8px;
-    padding: 10px;
-    font-size: 18px;
+    border-radius: 1vmin;
+    padding: 1vmin;
+    font-size: 1.8vmin;
     font-family: 'Yusei Magic', sans-serif;
     resize: vertical;
     background-color: #fafafa;
     transition: font-size 0.2s ease;
 }
 textarea.small-font {
-    font-size: 14px;
+    font-size: 1.5vmin;
 }
 
 .button-container {
     display: flex;
-    gap: 15px;
+    gap: 2vmin;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-#stamp-button, #undo-button {
-    padding: 12px 30px;
-    font-size: 20px;
+#stamp-button, #undo-button, #switch-page-button {
+    padding: 1.5vmin 3vmin;
+    font-size: 2vmin;
     font-family: 'Yusei Magic', sans-serif;
     font-weight: bold;
     cursor: pointer;
     border: none;
     border-radius: 50px;
     color: white;
-    min-width: 140px;
+    min-width: 15vmin;
     text-align: center;
     transition: all 0.2s ease;
-    box-shadow: 0 4px 0 0 rgba(0,0,0,0.1);
     transform: translateY(0);
 }
 #stamp-button:disabled, #undo-button:disabled {
     opacity: 0.6;
     cursor: not-allowed;
 }
-#stamp-button:active, #undo-button:active {
+#stamp-button:active, #undo-button:active, #switch-page-button:active {
     transform: translateY(2px);
-    box-shadow: 0 2px 0 0 rgba(0,0,0,0.1);
 }
 
-#stamp-button { background: linear-gradient(145deg, #ffb899, #ff8a80); }
-#undo-button { background: linear-gradient(145deg, #a6d9ff, #81c7f5); }
+#stamp-button { background: linear-gradient(145deg, #ffb899, #ff8a80); box-shadow: 0 4px 0 0 #e57373; }
+#undo-button { background: linear-gradient(145deg, #a6d9ff, #81c7f5); box-shadow: 0 4px 0 0 #42a5f5; }
+#switch-page-button { color: #5d4037; background: linear-gradient(145deg, #a5d6a7, #81c784); box-shadow: 0 4px 0 0 #388e3c; font-size: 1.8vmin; }
+
+#stamp-button:active { box-shadow: 0 2px 0 0 #e57373; }
+#undo-button:active { box-shadow: 0 2px 0 0 #42a5f5; }
+#switch-page-button:active { box-shadow: 0 2px 0 0 #388e3c; }
 
 #stamp-animation-img {
     position: fixed;
     z-index: 100;
-    width: 100px;
-    height: 100px;
+    width: 12vmin;
+    height: 12vmin;
     pointer-events: none;
     display: none;
     transform: translate(-50%, -120%);
@@ -240,8 +244,8 @@ textarea.small-font {
 
 .confetti {
     position: absolute;
-    width: 10px;
-    height: 20px;
+    width: 1.2vmin;
+    height: 2.4vmin;
     opacity: 0;
     animation-name: confetti-fall;
     animation-duration: 4s;
@@ -275,8 +279,8 @@ textarea.small-font {
 
 .milestone-popup {
     background: linear-gradient(145deg, #fff9c4, #ffecb3);
-    padding: 40px 60px;
-    border-radius: 30px;
+    padding: 4vmin 6vmin;
+    border-radius: 3vmin;
     text-align: center;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     border: 5px solid #fff;
@@ -290,16 +294,16 @@ textarea.small-font {
 }
 
 #milestone-text {
-    font-size: clamp(32px, 8vw, 70px);
-    margin: 0 0 30px 0;
+    font-size: 7vmin;
+    margin: 0 0 3vmin 0;
     color: #ec407a;
-    text-shadow: 2px 2px 0 #fff, 4px 4px 0 rgba(255, 138, 128, 0.5);
+    text-shadow: 0.2vmin 0.2vmin 0 #fff, 0.4vmin 0.4vmin 0 rgba(255, 138, 128, 0.5);
     line-height: 1.2;
 }
 
 #milestone-close-button {
-    padding: 15px 40px;
-    font-size: 24px;
+    padding: 1.5vmin 4vmin;
+    font-size: 2.5vmin;
     font-family: 'Yusei Magic', sans-serif;
     font-weight: bold;
     cursor: pointer;
@@ -307,44 +311,21 @@ textarea.small-font {
     border-radius: 50px;
     color: white;
     background: linear-gradient(145deg, #ff8a80, #ff5252);
-    box-shadow: 0 5px 0 0 #c62828;
+    box-shadow: 0 0.5vmin 0 0 #c62828;
     transition: all 0.1s ease;
 }
 #milestone-close-button:active {
     transform: translateY(3px);
-    box-shadow: 0 2px 0 0 #c62828;
+    box-shadow: 0 0.2vmin 0 0 #c62828;
 }
 
-#switch-page-button {
-    padding: 12px 25px;
-    font-size: 18px;
-    font-family: 'Yusei Magic', sans-serif;
-    font-weight: bold;
-    cursor: pointer;
-    border: none;
-    border-radius: 50px;
-    color: #5d4037;
-    min-width: 140px;
-    text-align: center;
-    transition: all 0.2s ease;
-    background: linear-gradient(145deg, #a5d6a7, #81c784);
-    box-shadow: 0 4px 0 0 #388e3c;
-    transform: translateY(0);
-}
-
-#switch-page-button:active {
-    transform: translateY(2px);
-    box-shadow: 0 2px 0 0 #388e3c;
-}
-
-/* --- ▼▼▼ ここからスタンプ変更モーダルのスタイルを追加 ▼▼▼ --- */
 .stamp-change-modal {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(135, 206, 250, 0.7); /* 半透明の水色背景 */
+    background-color: rgba(135, 206, 250, 0.7);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -360,8 +341,8 @@ textarea.small-font {
 
 .stamp-change-popup {
     background: #fff;
-    padding: 30px;
-    border-radius: 20px;
+    padding: 3vmin;
+    border-radius: 2vmin;
     text-align: center;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     border: 5px solid #fff;
@@ -369,40 +350,40 @@ textarea.small-font {
 }
 
 .stamp-change-popup h3 {
-    margin: 0 0 20px 0;
+    margin: 0 0 2vmin 0;
     color: #666;
-    font-size: 24px;
+    font-size: 2.5vmin;
 }
 
 #stamp-options-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
-    margin-bottom: 30px;
+    gap: 1.5vmin;
+    margin-bottom: 3vmin;
 }
 
 .stamp-option {
-    width: 60px;
-    height: 60px;
+    width: 7vmin;
+    height: 7vmin;
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.2s ease;
-    border: 4px solid transparent;
+    border: 0.5vmin solid transparent;
 }
 .stamp-option:hover {
     transform: scale(1.1);
 }
 .stamp-option.selected {
-    border-color: #ffc107; /* 選択中のスタンプに黄色い枠 */
+    border-color: #ffc107;
     box-shadow: 0 0 10px #ffc107;
 }
 
 #stamp-change-close-button {
-    padding: 10px 30px;
-    font-size: 18px;
+    padding: 1vmin 3vmin;
+    font-size: 1.8vmin;
     font-family: 'Yusei Magic', sans-serif;
     font-weight: bold;
     cursor: pointer;
