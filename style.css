@@ -14,7 +14,7 @@ body {
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
-    /* ▼▼▼ 画面周りの余白をなくす ▼▼▼ */
+    /* ▼▼▼ 画面周りの余白を完全になくす ▼▼▼ */
     padding: 0;
 }
 
@@ -26,12 +26,13 @@ body {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    justify-content: space-around; /* コンテンツを均等に配置 */
+    justify-content: space-around;
     align-items: center;
     gap: 2vmin;
     padding: 3vmin;
     overflow: auto;
-    border-radius: 0; /* 角の丸みをなくす */
+    /* ▼▼▼ フルスクリーンなので角の丸みや影は不要に ▼▼▼ */
+    border-radius: 0;
     border: none;
     box-shadow: none;
 }
@@ -39,7 +40,7 @@ body {
 /* --- レイアウトの基本設定（縦画面・モバイル優先） --- */
 .main-content {
     display: flex;
-    flex-direction: column; /* 縦に並べる */
+    flex-direction: column;
     gap: 3vmin;
     align-items: center;
     width: 100%;
@@ -49,7 +50,7 @@ body {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     gap: 0.5vmin;
-    width: 90vw; /* 画面幅の90% */
+    width: 90vw;
     background-color: #ffcce7;
     border-radius: 2vmin;
     padding: 1vmin;
@@ -59,36 +60,47 @@ body {
     display: flex;
     flex-direction: column;
     gap: 1.5vmin;
-    width: 90vw; /* 画面幅の90% */
+    width: 90vw;
 }
 
 /* --- 横画面用の設定 --- */
 @media (orientation: landscape) {
     .main-content {
-        flex-direction: row; /* 横に並べる */
-        align-items: stretch; /* 高さを揃える */
+        flex-direction: row;
+        align-items: stretch;
         justify-content: center;
-        height: 75%; /* メインコンテンツの高さを確保 */
+        height: 75%;
         gap: 3vmin;
     }
     .grid-container {
         width: auto;
-        height: 100%; /* 高さいっぱい */
-        aspect-ratio: 1 / 1; /* 正方形を維持 */
+        height: 100%;
+        aspect-ratio: 1 / 1;
     }
     .rewards-container {
-        width: 35%; /* 残りの幅を取る */
+        width: 35%;
         height: 100%;
-        overflow-y: auto; /* 必要ならスクロール */
+        overflow-y: auto;
     }
 }
+
+/* ▼▼▼ スクロールバーを非表示にする設定を追加 ▼▼▼ */
+.rewards-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+}
+.rewards-container {
+    -ms-overflow-style: none;  /* IE, Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+/* ▲▲▲ ここまで追加 ▲▲▲ */
+
 
 .grid-cell {
     aspect-ratio: 1 / 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2.5vmin; /* フォントを少し大きく */
+    font-size: 2.5vmin;
     font-weight: bold;
     color: #888;
     background-color: #fff;
@@ -115,7 +127,7 @@ body {
     width: 100%;
     box-sizing: border-box;
     padding: 1.5vmin;
-    font-size: 3.5vmin; /* フォントを大きく */
+    font-size: 3.5vmin;
     font-family: 'Yusei Magic', sans-serif;
     font-weight: bold;
     text-align: center;
@@ -147,7 +159,7 @@ body {
 .reward-title {
     margin: 0 0 1vmin 0;
     font-weight: bold;
-    font-size: 2.5vmin; /* フォントを大きく */
+    font-size: 2.5vmin;
     display: flex;
     align-items: center;
 }
@@ -169,7 +181,7 @@ textarea {
     border: 2px solid #f1f1f1;
     border-radius: 1vmin;
     padding: 1vmin;
-    font-size: 2.2vmin; /* フォントを大きく */
+    font-size: 2.2vmin;
     font-family: 'Yusei Magic', sans-serif;
     resize: vertical;
     background-color: #fafafa;
@@ -188,7 +200,7 @@ textarea.small-font {
 
 #stamp-button, #undo-button, #switch-page-button {
     padding: 1.8vmin 4vmin;
-    font-size: 2.5vmin; /* フォントを大きく */
+    font-size: 2.5vmin;
     font-family: 'Yusei Magic', sans-serif;
     font-weight: bold;
     cursor: pointer;
@@ -217,7 +229,6 @@ textarea.small-font {
 #switch-page-button:active { box-shadow: 0 2px 0 0 #388e3c; }
 
 #stamp-animation-img, .milestone-popup, .stamp-change-popup {
-    /* モーダルやアニメーションのサイズもvmin基準に */
     width: 12vmin;
     height: 12vmin;
 }
@@ -397,5 +408,5 @@ textarea.small-font {
     transition: all 0.2s ease;
 }
 #stamp-change-close-button:hover {
-    background: #ffffff;
+    background: #ddd;
 }
