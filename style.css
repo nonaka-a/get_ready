@@ -13,22 +13,23 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2vmin; /* 画面の短辺に応じた最小限の余白 */
+    /* ▼▼▼ この部分を修正 ▼▼▼ */
+    padding: 1vmin; /* 画面周りの余白をさらに狭くします */
     box-sizing: border-box;
 }
 
+/* ▼▼▼ この部分を修正 ▼▼▼ */
 .app-container {
     background-color: rgba(255, 255, 255, 0.95);
-    /* widthとheightを削除し、中身に合わせてサイズが決まるようにする */
-    max-width: 96vw; /* 画面からはみ出さない最大幅 */
-    max-height: 96vh; /* 画面からはみ出さない最大高さ */
+    max-width: 98vw;
+    max-height: 98vh; /* 高さを画面ギリギリまで広げられるようにします */
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 3vmin;
-    padding: 4vmin;
+    padding: 3vmin; /* 内側の余白も少し調整 */
     overflow-y: auto;
     border-radius: 30px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
@@ -47,7 +48,7 @@ body {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     gap: 0.4vmin;
-    width: 55vmin; /* 画面の短辺を基準にサイズを決定 */
+    width: 55vmin;
     background-color: #ffcce7;
     border: 3px solid #ffcce7;
     border-radius: 1.5vmin;
@@ -87,7 +88,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 1.5vmin;
-    width: 32vmin; /* 画面の短辺を基準にサイズを決定 */
+    width: 32vmin;
 }
 
 #name-input {
