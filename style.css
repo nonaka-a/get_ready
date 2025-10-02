@@ -13,48 +13,79 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* ▼▼▼ この部分を修正 ▼▼▼ */
-    padding: 1vmin; /* 画面周りの余白をさらに狭くします */
+    padding: 2vmin;
     box-sizing: border-box;
 }
 
-/* ▼▼▼ この部分を修正 ▼▼▼ */
 .app-container {
     background-color: rgba(255, 255, 255, 0.95);
-    max-width: 98vw;
-    max-height: 98vh; /* 高さを画面ギリギリまで広げられるようにします */
+    width: auto; /* 中身に合わせて幅を決定 */
+    height: auto; /* 中身に合わせて高さを決定 */
+    max-width: 96vw;
+    max-height: 96vh;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 3vmin;
-    padding: 3vmin; /* 内側の余白も少し調整 */
-    overflow-y: auto;
+    padding: 4vmin;
+    overflow: auto; /* 必要に応じてスクロール */
     border-radius: 30px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
     border: 3px solid #fff;
 }
 
+/* --- ▼▼▼ ここからレイアウトの基本設定（縦画面・モバイル優先） ▼▼▼ --- */
 .main-content {
     display: flex;
+    flex-direction: column; /* 縦に並べる */
     gap: 4vmin;
-    align-items: flex-start;
+    align-items: center;
     width: 100%;
-    justify-content: center;
 }
 
 .grid-container {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
-    gap: 0.4vmin;
-    width: 55vmin;
+    gap: 0.5vmin;
+    width: 90%; /* 横幅いっぱいに広げる */
+    max-width: 500px; /* PCでの最大幅 */
     background-color: #ffcce7;
     border: 3px solid #ffcce7;
     border-radius: 1.5vmin;
-    flex-shrink: 0;
-    padding: 0.8vmin;
+    padding: 1vmin;
 }
+
+.rewards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vmin;
+    width: 90%; /* 横幅いっぱいに広げる */
+    max-width: 500px; /* PCでの最大幅 */
+}
+/* --- ▲▲▲ ここまでが基本設定 --- */
+
+
+/* --- ▼▼▼ ここから横画面用の設定 ▼▼▼ --- */
+@media (orientation: landscape) {
+    .main-content {
+        flex-direction: row; /* 横に並べる */
+        align-items: flex-start;
+        justify-content: center;
+    }
+    .grid-container {
+        width: 60vh; /* 画面の高さに応じてサイズ決定 */
+        height: 60vh;
+        max-width: none;
+    }
+    .rewards-container {
+        width: 35vh; /* 画面の高さに応じてサイズ決定 */
+        max-width: none;
+    }
+}
+/* --- ▲▲▲ ここまでが横画面用の設定 --- */
+
 
 .grid-cell {
     aspect-ratio: 1 / 1;
@@ -82,13 +113,6 @@ body {
 .grid-cell.stamped {
     color: transparent;
     transform: scale(1.05);
-}
-
-.rewards-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5vmin;
-    width: 32vmin;
 }
 
 #name-input {
@@ -144,7 +168,7 @@ body {
 
 textarea {
     width: 100%;
-    height: 8.5vmin;
+    min-height: 8.5vmin; /* 高さを可変に */
     box-sizing: border-box;
     border: 2px solid #f1f1f1;
     border-radius: 1vmin;
